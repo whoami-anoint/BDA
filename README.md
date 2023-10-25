@@ -15,3 +15,4 @@
 ### 14) [Discuss common data architecture patterns used in NoSQL databases for managing Big Data. Provide examples of how these patterns are employed in real-world applications.](/14.md)
 ### 15) [Explain how NoSQL databases are employed in managing and analyzing Big Data. Highlight five advantages of using NoSQL databases for handling large and complex datasets.](/15.md)
 ### 16) [Explain the core features and use cases of MongoDB as a NoSQL database. Provide examples of scenarios where MongoDB is a suitable choice for data storage and retrieval.](/16.md)
+### 17) [Explain the importance of ACID (Atomicity, Consistency, Isolation, Durability) properties in traditional relational databases. How do these properties ensure data reliability and integrity? ](/17.md)
