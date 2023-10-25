@@ -7,3 +7,4 @@
 6) [Describe the three main categories of analytics  descriptive, predictive, and prescriptive analytics. Provide examples for each category and explain when they are most useful in a business context.](/6.md)
 7) [Describe the Hadoop ecosystem, focusing on the core components, and provide examples of their roles in a typical Big Data processing workflow. ](/7.md)
 8) [Choose two Hadoop ecosystem tools, explain their specific use cases, and how they complement the core components of Hadoop. Provide real-world examples of where these tools are commonly applied.](/8.md)
+9) [Explain the concept of clustering in data analysis. Provide an overview of two distinct clustering algorithms, and discuss their applications and differences.](9.md)
