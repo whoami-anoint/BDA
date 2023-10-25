@@ -9,3 +9,4 @@
 ### 8) [Choose two Hadoop ecosystem tools, explain their specific use cases, and how they complement the core components of Hadoop. Provide real-world examples of where these tools are commonly applied.](/8.md)
 ### 9) [Explain the concept of clustering in data analysis. Provide an overview of two distinct clustering algorithms, and discuss their applications and differences.](9.md)
 ### 10) [Discuss the Apriori algorithm and its role in mining association rules. Explain the key steps involved in the Apriori algorithm, and provide a real-world example of how it can be applied to market basket analysis.](/10.md)
+### 11) [Define the concept of NoSQL in the context of Big Data management. Discuss why traditional relational databases may not be well-suited for Big Data and how NoSQL databases address these limitations.](/11.md)
