@@ -11,3 +11,4 @@
 ### 10) [Discuss the Apriori algorithm and its role in mining association rules. Explain the key steps involved in the Apriori algorithm, and provide a real-world example of how it can be applied to market basket analysis.](/10.md)
 ### 11) [Define the concept of NoSQL in the context of Big Data management. Discuss why traditional relational databases may not be well-suited for Big Data and how NoSQL databases address these limitations.](/11.md)
 ### 12) [Provide an introductory overview of both MongoDB and Cassandra. Explain their key features and use cases in managing and storing Big Data. ](/12.md)
+### 13) [Describe the fundamental characteristics of a NoSQL data store. Compare and contrast NoSQL data stores with traditional relational databases, highlighting three key differences.](/13.md)
