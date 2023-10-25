@@ -12,3 +12,6 @@
 ### 11) [Define the concept of NoSQL in the context of Big Data management. Discuss why traditional relational databases may not be well-suited for Big Data and how NoSQL databases address these limitations.](/11.md)
 ### 12) [Provide an introductory overview of both MongoDB and Cassandra. Explain their key features and use cases in managing and storing Big Data. ](/12.md)
 ### 13) [Describe the fundamental characteristics of a NoSQL data store. Compare and contrast NoSQL data stores with traditional relational databases, highlighting three key differences.](/13.md)
+### 14) [Discuss common data architecture patterns used in NoSQL databases for managing Big Data. Provide examples of how these patterns are employed in real-world applications.](/14.md)
+### 15) [Explain how NoSQL databases are employed in managing and analyzing Big Data. Highlight five advantages of using NoSQL databases for handling large and complex datasets.](/15.md)
+### 16) [Explain the core features and use cases of MongoDB as a NoSQL database. Provide examples of scenarios where MongoDB is a suitable choice for data storage and retrieval.](/16.md)
