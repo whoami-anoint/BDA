@@ -1,64 +1,22 @@
+name: Automerge Dev to Main
+
 on:
-  push:
-    branches: [ dev ]
+  pull_request:
+    branches:
+      - dev
 
 jobs:
-  auto-pr:
+  merge:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # Check if merge to dev was triggered by features PR
-      - name: Check merge source branch
+      - name: Merge into main
         run: |
-          echo "Merged branch: ${{ github.ref }}"
-          if [[ ${{ github.ref }} == refs/heads/dev ]]; then
-            merged_sha=$(git rev-parse HEAD~)
-            feature_branch=$(git log -1 --pretty=format:"%B" | grep -i "from features\/")
-            if [[ ! -z "$feature_branch" ]]; then
-              echo "Merged from features branch: $feature_branch"
-              # Proceed with creating draft PR
-            else
-              echo "Not merged from features, skipping auto-pr"
-              exit 0
-            fi
-          fi
-
-      # Check for conflicts (use git merge --dry-run or relevant Actions)
-      - name: Check for conflicts
-        run: |
-          # Add your conflict detection command here (e.g., git merge --dry-run dev main)
-          if [[ $conflict_detected ]]; then
-            echo "Conflicts detected, manual resolution required"
-            exit 1
-          fi
-
-      # Create draft pull request to main
-      - name: Create draft pull request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          title: "Automatically merge changes from dev to main"
-          body: "This draft pull request merges changes from the dev branch to main. Please review and approve before merging."
-          head: dev
-          base: main
-          draft: true
-
-      # Enforce code quality checks (linters, formatters)
-      - name: Run code quality checks
-        # Add your code quality checks commands here
-
-      # Require reviewer approval
-      - name: Require review
-        uses: peter-evans/review-actions@v3
-        with:
-          reviewers: "team1, team2"
-
-      # Merge on approval
-      - name: Merge on approval
-        uses: peter-evans/merge-pull-request@v4
-        with:
-          pull-request-number: ${{ github.context.issue.number }}
-          merge-method: squash
-
-# Remember to replace placeholders with your actual values and adapt the checks to your needs.
-
+          git config --global user.email "abhishekkfl@gmail.com"
+          git config --global user.name "whoami-anoint"
+          git checkout main
+          git merge --no-ff ${{ github.event.pull_request.head.ref }}
+          git push origin main
