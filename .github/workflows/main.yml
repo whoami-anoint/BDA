@@ -1,28 +1,64 @@
 on:
-  pull_request:
-    branches:
-      - dev
+  push:
+    branches: [ dev ]
 
 jobs:
-  auto-merge:
+  auto-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Determine source branch of pull request
-        id: determine_source_branch
+      # Check if merge to dev was triggered by features PR
+      - name: Check merge source branch
         run: |
-          SOURCE_BRANCH=$(jq -r '.pull_request.head.ref' "$GITHUB_EVENT_PATH")
-          echo "Source branch of pull request: $SOURCE_BRANCH"
-          echo "::set-output name=source_branch::$SOURCE_BRANCH"
-
-      - name: Check if source branch is features
-        run: |
-          if [[ "${{ steps.determine_source_branch.outputs.source_branch }}" == "features" ]]; then
-            echo "Pull request is from features branch"
-            # Perform auto-merge to dev here
-          else
-            echo "Pull request is not from features branch, skipping auto-merge"
-            exit 0
+          echo "Merged branch: ${{ github.ref }}"
+          if [[ ${{ github.ref }} == refs/heads/dev ]]; then
+            merged_sha=$(git rev-parse HEAD~)
+            feature_branch=$(git log -1 --pretty=format:"%B" | grep -i "from features\/")
+            if [[ ! -z "$feature_branch" ]]; then
+              echo "Merged from features branch: $feature_branch"
+              # Proceed with creating draft PR
+            else
+              echo "Not merged from features, skipping auto-pr"
+              exit 0
+            fi
           fi
+
+      # Check for conflicts (use git merge --dry-run or relevant Actions)
+      - name: Check for conflicts
+        run: |
+          # Add your conflict detection command here (e.g., git merge --dry-run dev main)
+          if [[ $conflict_detected ]]; then
+            echo "Conflicts detected, manual resolution required"
+            exit 1
+          fi
+
+      # Create draft pull request to main
+      - name: Create draft pull request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: "Automatically merge changes from dev to main"
+          body: "This draft pull request merges changes from the dev branch to main. Please review and approve before merging."
+          head: dev
+          base: main
+          draft: true
+
+      # Enforce code quality checks (linters, formatters)
+      - name: Run code quality checks
+        # Add your code quality checks commands here
+
+      # Require reviewer approval
+      - name: Require review
+        uses: peter-evans/review-actions@v3
+        with:
+          reviewers: "team1, team2"
+
+      # Merge on approval
+      - name: Merge on approval
+        uses: peter-evans/merge-pull-request@v4
+        with:
+          pull-request-number: ${{ github.context.issue.number }}
+          merge-method: squash
+
+# Remember to replace placeholders with your actual values and adapt the checks to your needs.
+
