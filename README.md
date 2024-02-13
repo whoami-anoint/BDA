@@ -1,4 +1,5 @@
 # BDA
+<pre>
 ### 1) [Explain the concept of Big Data and its significance in modern data-driven decision-making.](/1.md)
 ### 2) [List and describe the three V's commonly used to define the characteristics of Big Data. Provide examples for each characteristic.](/2.md)
 ### 3) [Trace the historical development of Big Data from its inception to the present day. Highlight three key milestones in this evolution. ](/3.md)
@@ -16,3 +17,4 @@
 ### 15) [Explain how NoSQL databases are employed in managing and analyzing Big Data. Highlight five advantages of using NoSQL databases for handling large and complex datasets.](/15.md)
 ### 16) [Explain the core features and use cases of MongoDB as a NoSQL database. Provide examples of scenarios where MongoDB is a suitable choice for data storage and retrieval.](/16.md)
 ### 17) [Explain the importance of ACID (Atomicity, Consistency, Isolation, Durability) properties in traditional relational databases. How do these properties ensure data reliability and integrity? ](/17.md)
+</pre>
