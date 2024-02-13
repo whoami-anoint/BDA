@@ -1,20 +1,28 @@
-name: Merge Dev to Main
-
 on:
-  push:
+  pull_request:
     branches:
       - dev
 
 jobs:
-  merge:
+  auto-merge:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Merge into main
+      - name: Determine source branch of pull request
+        id: determine_source_branch
         run: |
-          git checkout main
-          git pull origin main
-          git merge --no-ff origin/dev -m "Merge from dev to main"
-          git push origin main
+          SOURCE_BRANCH=$(jq -r '.pull_request.head.ref' "$GITHUB_EVENT_PATH")
+          echo "Source branch of pull request: $SOURCE_BRANCH"
+          echo "::set-output name=source_branch::$SOURCE_BRANCH"
+
+      - name: Check if source branch is features
+        run: |
+          if [[ "${{ steps.determine_source_branch.outputs.source_branch }}" == "features" ]]; then
+            echo "Pull request is from features branch"
+            # Perform auto-merge to dev here
+          else
+            echo "Pull request is not from features branch, skipping auto-merge"
+            exit 0
+          fi
